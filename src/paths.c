@@ -6,44 +6,62 @@
 /*   By: sofkhali <sofkhali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:38:07 by sofkhali          #+#    #+#             */
-/*   Updated: 2025/09/03 17:02:53 by sofkhali         ###   ########.fr       */
+/*   Updated: 2025/09/04 19:10:55 by sofkhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-char    *get_the_path(char **env)
+char	*get_the_path(char **env)
 {
-    int i;
-    
-    i = 0;
-    while (env[i])
-    {
-        if (ft_strncmp(env[i], "PATH", 5) == 0)
-            return (env[i] + 5);
-        i++;
-    }
-    return (NULL);
+	int		i;
+
+	i = 0;
+	while (env[i])
+	{
+		if (ft_strncmp(env[i], "PATH=", 5) == 0)
+			return (env[i] + 5);
+		i++;
+	}
+	return (NULL);
 }
 
-char    find_the_path(char *cmd, char **env)
+char	*build_the_path(char *dir, char *cmd)
 {
-    char    **paths;
-    char    *path_init;
-    char    *temp;
-    int i;
-    
-    path_init = get_the_path(env);
-    if (!path_init)
-        return (NULL);
-    paths = ft_split(path_init, ':');
-    if (!paths)
-        return (NULL);
-    i = 0;
-    while (paths[i])
-    {
-        temp = ft_strjoin(paths[i], "/");
-        if (!temp)
-        ;
-    }
+	char	*half_path;
+	char	*full_path;
+
+	half_path = ft_strjoin(dir, "/");
+	if (!half_path)
+		return (NULL);
+	full_path = ft_strjoin(half_path, cmd);
+	free(half_path);
+	return (full_path);
+}
+
+char	*find_the_path(char *cmd, char **env)
+{
+	char	**paths;
+	char	*path_init;
+	char	*complete_path;
+	int		i;
+
+	path_init = get_the_path(env);
+	if (!path_init)
+		return (NULL);
+	paths = ft_split(path_init, ':');
+	if (!paths)
+		return (NULL);
+	i = 0;
+	while (paths[i])
+	{
+		complete_path = build_the_path(paths[i], cmd);
+		if (!complete_path)
+			return (free_the_array(paths), NULL);
+		if (access(complete_path, F_OK | X_OK) == 0)
+			return (free_the_array(paths), complete_path);
+		free(complete_path);
+		i++;
+	}
+	return (free_the_array(paths), NULL);
 }

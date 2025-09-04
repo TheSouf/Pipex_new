@@ -6,7 +6,7 @@
 /*   By: sofkhali <sofkhali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:09:32 by sofkhali          #+#    #+#             */
-/*   Updated: 2025/09/03 17:00:55 by sofkhali         ###   ########.fr       */
+/*   Updated: 2025/09/04 19:18:39 by sofkhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,16 @@
 typedef struct s_data
 {
 }   t_data;
+
+/*Fonctions pour free*/
+void	free_the_array(char	**array);
+
+/*Fonctions pour trouver le chemin*/
+char	*find_the_path(char *cmd, char **env);
+char	*build_the_path(char *dir, char *cmd);
+char	*get_the_path(char **env);
+
+/*Fonctions pour les gestions d'erreurs*/
+
 
 #endif
