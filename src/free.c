@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofkhali <sofkhali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofkhali <sofkhali@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:38:04 by sofkhali          #+#    #+#             */
-/*   Updated: 2025/09/04 21:32:58 by sofkhali         ###   ########.fr       */
+/*   Updated: 2025/09/05 01:00:47 by sofkhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ void	free_the_array(char	**array)
 	}
 	free(array);
 }
-

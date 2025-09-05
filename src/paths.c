@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofkhali <sofkhali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofkhali <sofkhali@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:38:07 by sofkhali          #+#    #+#             */
-/*   Updated: 2025/09/04 19:10:55 by sofkhali         ###   ########.fr       */
+/*   Updated: 2025/09/05 15:37:38 by sofkhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,23 @@ char	*find_the_path(char *cmd, char **env)
 		i++;
 	}
 	return (free_the_array(paths), NULL);
+}
+
+char	**execute_cmd(char *argv, char **env)
+{
+	char	**cmd;
+	char	*path;
+
+	cmd = ft_split(argv, ' ');
+	if (!cmd)
+		error_and_exit("Error: split failed");
+	path = find_the_path(cmd[0], env);
+	if (!path)
+	{
+		free_the_array(cmd);
+		error_and_exit("Error: command not found");
+	}
+	free(cmd[0]);
+	cmd[0] = path;
+	return (cmd);
 }
