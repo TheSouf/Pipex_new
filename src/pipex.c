@@ -6,7 +6,7 @@
 /*   By: sofkhali <sofkhali@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:38:09 by sofkhali          #+#    #+#             */
-/*   Updated: 2025/09/05 16:18:52 by sofkhali         ###   ########.fr       */
+/*   Updated: 2025/09/06 22:08:20 by sofkhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	first_child_processus(char **argv, char **env, int *fd)
 
 	infile = open(argv[1], O_RDONLY);
 	if (infile == -1)
-		error_and_exit("Error");
+		child_error_and_exit(argv[1], fd);
 	dup2(infile, STDIN_FILENO);
 	close(infile);
 	dup2(fd[1], STDOUT_FILENO);
@@ -38,7 +38,7 @@ void	second_child_processus(char **argv, char **env, int *fd)
 
 	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (outfile == -1)
-		error_and_exit("Error");
+		child_error_and_exit(argv[4], fd);
 	dup2(fd[0], STDIN_FILENO);
 	dup2(outfile, STDOUT_FILENO);
 	close(outfile);
@@ -57,7 +57,7 @@ int	main(int argc, char **argv, char **env)
 	pid_t	pid2;
 
 	if (argc != 5)
-		error_and_exit("Usage: ./pipex infile cmd1 cmd2 outfile");
+		ft_putstr_fd("Usage: ./pipex infile cmd1 cmd2 outfile", STDERR_FILENO);
 	if (pipe(fd) == -1)
 		error_and_exit("Error");
 	pid1 = fork();
