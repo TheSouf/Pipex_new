@@ -6,7 +6,7 @@
 /*   By: sofkhali <sofkhali@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:38:09 by sofkhali          #+#    #+#             */
-/*   Updated: 2025/09/06 22:08:20 by sofkhali         ###   ########.fr       */
+/*   Updated: 2025/09/09 03:27:45 by sofkhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,22 @@ void	second_child_processus(char **argv, char **env, int *fd)
 	exit(127);
 }
 
+static int	get_exit_status(int status)
+{
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	else if (WIFSIGNALED(status))
+		return (128 + WTERMSIG(status));
+	else
+		return (EXIT_FAILURE);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	int		fd[2];
 	pid_t	pid1;
 	pid_t	pid2;
+	int		status2;
 
 	if (argc != 5)
 		ft_putstr_fd("Usage: ./pipex infile cmd1 cmd2 outfile", STDERR_FILENO);
@@ -73,6 +84,6 @@ int	main(int argc, char **argv, char **env)
 	close(fd[0]);
 	close(fd[1]);
 	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
-	return (0);
+	waitpid(pid2, &status2, 0);
+	return (get_exit_status(status2));
 }

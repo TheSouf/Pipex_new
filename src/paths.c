@@ -6,7 +6,7 @@
 /*   By: sofkhali <sofkhali@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:38:07 by sofkhali          #+#    #+#             */
-/*   Updated: 2025/09/05 15:37:38 by sofkhali         ###   ########.fr       */
+/*   Updated: 2025/09/09 03:42:32 by sofkhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,11 @@ char	**execute_cmd(char *argv, char **env)
 	path = find_the_path(cmd[0], env);
 	if (!path)
 	{
+		ft_putstr_fd("pipex: ", STDERR_FILENO);
+		ft_putstr_fd(cmd[0], STDERR_FILENO);
+		ft_putstr_fd(": command not found\n", STDERR_FILENO);
 		free_the_array(cmd);
-		error_and_exit("Error: command not found");
+		exit(127);
 	}
 	free(cmd[0]);
 	cmd[0] = path;

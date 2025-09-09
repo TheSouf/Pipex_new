@@ -6,7 +6,7 @@
 /*   By: sofkhali <sofkhali@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:09:32 by sofkhali          #+#    #+#             */
-/*   Updated: 2025/09/06 21:59:05 by sofkhali         ###   ########.fr       */
+/*   Updated: 2025/09/09 03:26:14 by sofkhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ char	**execute_cmd(char *argv, char **env);
 /*Fonctions pour les gestions d'erreurs*/
 void	error_and_exit(char *error_msg);
 void	child_error_and_exit(char *error_msg, int *fd);
+static int	get_exit_status(int status);
 
 #endif
