@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofkhali <sofkhali@student.s19.be>         +#+  +:+       +#+        */
+/*   By: sofkhali <sofkhali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:09:32 by sofkhali          #+#    #+#             */
-/*   Updated: 2025/09/09 03:26:14 by sofkhali         ###   ########.fr       */
+/*   Updated: 2025/09/14 20:03:00 by sofkhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ char	**execute_cmd(char *argv, char **env);
 /*Fonctions pour les gestions d'erreurs*/
 void	error_and_exit(char *error_msg);
 void	child_error_and_exit(char *error_msg, int *fd);
-static int	get_exit_status(int status);
+int		get_exit_status(int status);
 
 #endif

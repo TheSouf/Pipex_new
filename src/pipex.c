@@ -6,7 +6,7 @@
 /*   By: sofkhali <sofkhali@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:38:09 by sofkhali          #+#    #+#             */
-/*   Updated: 2025/09/09 19:27:20 by sofkhali         ###   ########.fr       */
+/*   Updated: 2025/09/14 20:01:54 by sofkhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	second_child_processus(char **argv, char **env, int *fd)
 	exit(127);
 }
 
-static int	get_exit_status(int status)
+int	get_exit_status(int status)
 {
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
