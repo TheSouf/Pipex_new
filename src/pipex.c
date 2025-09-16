@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofkhali <sofkhali@student.s19.be>         +#+  +:+       +#+        */
+/*   By: sofkhali <sofkhali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:38:09 by sofkhali          #+#    #+#             */
-/*   Updated: 2025/09/14 20:01:54 by sofkhali         ###   ########.fr       */
+/*   Updated: 2025/09/16 13:12:31 by sofkhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,12 @@ int	get_exit_status(int status)
 		return (EXIT_FAILURE);
 }
 
-int	main(int argc, char **argv, char **env)
+void	run_pipex(char **argv, char **env, int *status2)
 {
 	int		fd[2];
 	pid_t	pid1;
 	pid_t	pid2;
-	int		status2;
 
-	if (argc != 5)
-		ft_putstr_fd("Usage: ./pipex infile cmd1 cmd2 outfile", STDERR_FILENO);
 	if (pipe(fd) == -1)
 		error_and_exit("Error");
 	pid1 = fork();
@@ -84,6 +81,18 @@ int	main(int argc, char **argv, char **env)
 	close(fd[0]);
 	close(fd[1]);
 	waitpid(pid1, NULL, 0);
-	waitpid(pid2, &status2, 0);
+	waitpid(pid2, status2, 0);
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	int	status2;
+
+	if (argc != 5)
+	{
+		ft_putstr_fd("Usage:./pipex infile cmd1 cmd2 outfile\n", STDERR_FILENO);
+		return (EXIT_FAILURE);
+	}
+	run_pipex(argv, env, &status2);
 	return (get_exit_status(status2));
 }

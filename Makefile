@@ -6,15 +6,15 @@
 #    By: sofkhali <sofkhali@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/02 13:11:40 by sofkhali          #+#    #+#              #
-#    Updated: 2025/09/03 16:34:35 by sofkhali         ###   ########.fr        #
+#    Updated: 2025/09/16 10:32:07 by sofkhali         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-CC = gcc
+CC = cc
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror 
 
 SRCS = ./src/error.c ./src/free.c ./src/paths.c ./src/pipex.c 
 
@@ -51,4 +51,4 @@ fclean: clean
 
 re: fclean all  
 
-.PHONY: all clean fclean 
+.PHONY: all clean fclean re

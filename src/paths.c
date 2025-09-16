@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofkhali <sofkhali@student.s19.be>         +#+  +:+       +#+        */
+/*   By: sofkhali <sofkhali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:38:07 by sofkhali          #+#    #+#             */
-/*   Updated: 2025/09/12 19:53:16 by sofkhali         ###   ########.fr       */
+/*   Updated: 2025/09/16 13:09:34 by sofkhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	**execute_cmd(char *argv, char **env)
 	{
 		ft_putstr_fd("pipex: ", STDERR_FILENO);
 		ft_putstr_fd(cmd[0], STDERR_FILENO);
-		ft_putstr_fd("Error : command not found\n", STDERR_FILENO);
+		ft_putstr_fd("\nError: command not found\n", STDERR_FILENO);
 		free_the_array(cmd);
 		exit(127);
 	}
